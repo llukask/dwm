@@ -1,5 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/XF86keysym.h>
+
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 18;       /* gap pixel between windows */
@@ -8,12 +10,6 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Iosevka:size=11" };
 static const char dmenufont[]       = "IBM Plex Mono:size=14";
-
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
 
 static const char col_bg[]          = "#222222";
 static const char col_fg_sel[]      = "#bbbbbb";
@@ -67,6 +63,10 @@ static const char *dmenucmd[] = { "j4-dmenu-desktop", "--dmenu", "dmenu -i -fn \
 // static const char *termcmd[]  = { "st", NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 
+static const char *volupcmd[] = { "pamixer", "-i", "1", NULL };
+static const char *voldowncmd[] = { "pamixer", "-d", "1", NULL };
+static const char *volmutecmd[] = { "pamixer", "-t", NULL };
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -98,6 +98,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+
+        { 0,                            XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
+        { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
+        { 0,                            XF86XK_AudioMute, spawn, {.v = volmutecmd } },
 };
 
 /* button definitions */
