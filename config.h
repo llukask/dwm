@@ -3,12 +3,12 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int gappx     = 10;       /* gap pixel between windows */
 static const unsigned int snap      = 5;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "IBM Plex Sans:size=12" };
+static const char *fonts[]          = { "Iosevka:size=14" };
 
 static const char col_bg[]          = "#222222";
 static const char col_fg_sel[]      = "#bbbbbb";
@@ -21,7 +21,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "One", "Two", "Three", "Four", "Five" };
+static const char *tags[] = { "1", "2", "3", " 4", "5" };
 
 static const Rule rules[] = {
 	/* xprop(1):
