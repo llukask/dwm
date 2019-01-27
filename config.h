@@ -21,7 +21,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", " 4", "5" };
+static const char *tags[] = { "1", "2", "3", "4", "5" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -34,7 +34,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.65; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.6;  /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
@@ -73,6 +73,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_Right,  focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_Left,   focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
