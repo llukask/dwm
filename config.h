@@ -58,7 +58,18 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "j4-dmenu-desktop", "--dmenu", "dmenu -i -fn \"Iosevka-16\"", NULL };
+// static const char *dmenucmd[] = { "j4-dmenu-desktop", "--dmenu", "dmenu -i -fn \"Iosevka-16\"", NULL };
+// dmenu_run -nb "#222222" -sb "#222222" -nf "#888888" -sf "#bbbbbb" -fn Iosevka-16 -i
+static const char *dmenucmd[] = { 
+  "dmenu_run",  
+  "-i", 
+  "-sb", "#222222", 
+  "-nb" , "#222222", 
+  "-nf", "#888888", 
+  "-sf", "#bbbbbb", 
+  "-fn", "Iosevka-16", 
+  NULL 
+};
 // static const char *termcmd[]  = { "st", NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 
