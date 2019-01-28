@@ -5,14 +5,14 @@
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int gappx     = 10;       /* gap pixel between windows */
-static const unsigned int snap      = 5;       /* snap pixel */
+static const unsigned int snap      = 5;        /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Iosevka:size=14" };
 
 static const char col_bg[]          = "#222222";
-static const char col_fg_sel[]      = "#bbbbbb";
-static const char col_fg_norm[]     = "#888888";
+static const char col_fg_sel[]      = "#888888";
+static const char col_fg_norm[]     = "#666666";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -64,9 +64,9 @@ static const char *dmenucmd[] = {
   "dmenu_run",  
   "-i", 
   "-sb", "#222222", 
-  "-nb" , "#222222", 
-  "-nf", "#888888", 
-  "-sf", "#bbbbbb", 
+  "-nb", "#222222", 
+  "-nf", "#666666", 
+  "-sf", "#888888", 
   "-fn", "Iosevka-16", 
   NULL 
 };
