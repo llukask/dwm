@@ -5,14 +5,14 @@
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int gappx     = 10;       /* gap pixel between windows */
-static const unsigned int snap      = 5;       /* snap pixel */
+static const unsigned int snap      = 5;        /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Iosevka:size=14" };
 
 static const char col_bg[]          = "#222222";
-static const char col_fg_sel[]      = "#bbbbbb";
-static const char col_fg_norm[]     = "#888888";
+static const char col_fg_sel[]      = "#888888";
+static const char col_fg_norm[]     = "#666666";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -58,7 +58,9 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "j4-dmenu-desktop", "--dmenu", "dmenu -i -fn \"Iosevka-16\"", NULL };
+
+// dmenu_run -fn "Iosevka-18" -nb "#222222" -sb "#222222" -nf "#666666" -sf "#888888"
+static const char *dmenucmd[] = { "j4-dmenu-desktop", "--dmenu", "dmenu -i -fn \"Iosevka-16\" -nb \"#222222\" -sb \"#222222\" -nf \"#666666\" -sf \"#888888\"", NULL };
 // static const char *termcmd[]  = { "st", NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 
