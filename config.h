@@ -10,7 +10,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=14" };
 
-static const char col_bg[]          = "#222222";
+static const char col_bg[]          = "#1c2023";
 static const char col_fg_sel[]      = "#888888";
 static const char col_fg_norm[]     = "#666666";
 
@@ -63,11 +63,6 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { 
   "dmenu_run",  
   "-i", 
-  "-sb", "#222222", 
-  "-nb", "#222222", 
-  "-nf", "#666666", 
-  "-sf", "#888888", 
-  "-fn", "Iosevka-16", 
   NULL 
 };
 // static const char *termcmd[]  = { "st", NULL };
