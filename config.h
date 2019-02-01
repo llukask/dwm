@@ -8,7 +8,7 @@ static const unsigned int gappx     = 10;       /* gap pixel between windows */
 static const unsigned int snap      = 5;        /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Iosevka:size=14" };
+static const char *fonts[]          = { "monospace:size=14" };
 
 static const char col_bg[]          = "#222222";
 static const char col_fg_sel[]      = "#888888";
@@ -77,10 +77,13 @@ static const char *volupcmd[] = { "pamixer", "-i", "1", NULL };
 static const char *voldowncmd[] = { "pamixer", "-d", "1", NULL };
 static const char *volmutecmd[] = { "pamixer", "-t", NULL };
 
+static const char *lockcmd[] = { "i3lock", "-i", "/home/lukas/Pictures/wall.png", NULL };
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+        { MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
