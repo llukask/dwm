@@ -196,9 +196,11 @@ static void run(void);
 static void scan(void);
 static int sendevent(Client *c, Atom proto);
 static void sendmon(Client *c, Monitor *m);
+static void setborderpx(const Arg *arg);
 static void setclientstate(Client *c, long state);
 static void setfocus(Client *c);
 static void setfullscreen(Client *c, int fullscreen);
+static void setgappx(const Arg *arg);
 static void setlayout(const Arg *arg);
 static void setmfact(const Arg *arg);
 static void setup(void);
@@ -235,6 +237,8 @@ static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
 
 /* variables */
+static unsigned int gappx = 0;      /* gap pixel between windows */ 
+static unsigned int borderpx = 0;      
 static const char broken[] = "broken";
 static char stext[256];
 static int screen;
@@ -1282,6 +1286,13 @@ resizeclient(Client *c, int x, int y, int w, int h)
 	c->oldw = c->w; c->w = wc.width = w;
 	c->oldh = c->h; c->h = wc.height = h;
 	wc.border_width = c->bw;
+
+        if(&monocle == c->mon->lt[c->mon->sellt]->arrange) {
+          c->w = wc.width += c->bw * 2;
+          c->h = wc.height += c->bw * 2;
+          wc.border_width = 0;
+        }
+
 	XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
 	configure(c);
 	XSync(dpy, False);
@@ -1424,6 +1435,21 @@ sendmon(Client *c, Monitor *m)
 }
 
 void
+setborderpx(const Arg *arg)
+{
+	unsigned int i = arg->i;
+	
+        if (i < 0 && borderpx < i)
+          return;
+        
+        borderpx += i;
+
+        Monitor *m;
+        for(m = mons; m; m = m->next)
+          arrange(m);
+}
+
+  void
 setclientstate(Client *c, long state)
 {
 	long data[] = { state, None };
@@ -1498,6 +1524,21 @@ setfullscreen(Client *c, int fullscreen)
 }
 
 void
+setgappx(const Arg *arg)
+{
+	int i = arg->i;
+
+        if(i < 0 && gappx == 0)
+          return;
+        
+        gappx += i;
+
+        Monitor *m;
+        for(m = mons; m; m = m->next)
+          arrange(m);
+}
+
+void
 setlayout(const Arg *arg)
 {
 	if (!arg || !arg->v || arg->v != selmon->lt[selmon->sellt])
@@ -1535,6 +1576,9 @@ setup(void)
 
 	/* clean up any zombies immediately */
 	sigchld(0);
+
+        gappx = default_gappx;
+        borderpx = default_borderpx;
 
 	/* init screen */
 	screen = DefaultScreen(dpy);
