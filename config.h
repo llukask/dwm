@@ -8,7 +8,9 @@ static const unsigned int gappx     = 10;       /* gap pixel between windows */
 static const unsigned int snap      = 5;        /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=14" };
+static const char *fonts[]          = {
+  "Iosevka:size=14"
+};
 
 static const char col_bg[]          = "#1c2023";
 static const char col_fg_sel[]      = "#888888";
@@ -73,10 +75,13 @@ static const char *voldowncmd[] = { "pamixer", "-d", "1", NULL };
 static const char *volmutecmd[] = { "pamixer", "-t", NULL };
 
 static const char *lockcmd[] = { "i3lock", "-i", "/home/lukas/Pictures/wall.png", NULL };
+static const char *scrotcmd[] = { "scrot", "-s" };
+static const char *roficmd[] = { "rofi", "-show", "combi" };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+        { MODKEY,                       XK_o,      spawn,          {.v = roficmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
         { MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -112,6 +117,7 @@ static Key keys[] = {
         { 0,                            XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
         { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
         { 0,                            XF86XK_AudioMute, spawn, {.v = volmutecmd } },
+        { 0,                            XK_Print, spawn, {.v = scrotcmd } },
 };
 
 /* button definitions */
