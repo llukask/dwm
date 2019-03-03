@@ -3,8 +3,8 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
-static const unsigned int gappx     = 10;       /* gap pixel between windows */
+static const unsigned int default_borderpx  = 2;        /* border pixel of windows */
+static const unsigned int default_gappx = 10;
 static const unsigned int snap      = 5;        /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -15,11 +15,12 @@ static const char *fonts[]          = {
 static const char col_bg[]          = "#1c2023";
 static const char col_fg_sel[]      = "#888888";
 static const char col_fg_norm[]     = "#666666";
+static const char col_border_sel[]  = "#86c1b9";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_fg_norm, col_bg, col_bg },
-	[SchemeSel]  = { col_fg_sel, col_bg, col_bg  },
+	[SchemeNorm] = { col_fg_norm, col_bg, col_fg_norm },
+	[SchemeSel]  = { col_fg_sel, col_bg, col_border_sel  },
 };
 
 /* tagging */
@@ -93,7 +94,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
+        { MODKEY|ShiftMask,             XK_i,      setgappx,       {.i = +5 }},
+        { MODKEY|ShiftMask,             XK_u,      setgappx,       {.i = -5 }},
+        { MODKEY|ControlMask,           XK_i,      setborderpx,    {.i = +1 }},
+        { MODKEY|ControlMask,           XK_u,      setborderpx,    {.i = -1 }},
+        { MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
