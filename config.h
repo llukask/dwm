@@ -75,6 +75,10 @@ static const char *volupcmd[] = { "pamixer", "-i", "1", NULL };
 static const char *voldowncmd[] = { "pamixer", "-d", "1", NULL };
 static const char *volmutecmd[] = { "pamixer", "-t", NULL };
 
+static const char *playcmd[] = { "playerctl", "play-pause", NULL };
+static const char *nextcmd[] = { "playerctl", "next", NULL };
+static const char *prevcmd[] = { "playerctl", "previous", NULL };
+
 static const char *lockcmd[] = { "i3lock", "-i", "/home/lukas/Pictures/wall.png", NULL };
 static const char *scrotcmd[] = { "scrot", "-s" };
 static const char *roficmd[] = { "rofi", "-show", "combi" };
@@ -119,6 +123,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_5,                      4)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 
+	{ 0,				XF86XK_AudioPlay, spawn, {.v = playcmd } },
+	{ 0,				XF86XK_AudioPrev, spawn, {.v = prevcmd } },
+	{ 0,				XF86XK_AudioNext, spawn, {.v = nextcmd } },
         { 0,                            XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
         { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
         { 0,                            XF86XK_AudioMute, spawn, {.v = volmutecmd } },
